@@ -4,10 +4,8 @@ import java.lang.Character.isDigit
 
 fun pt1(inputsPath: String): Int {
      return File(inputsPath).readLines()
-         .sumOf {
-                val digits = it.filter(::isDigit)
-                "${digits.first()}${digits.last()}".toInt()
-             }
+         .map { it.filter(::isDigit) }
+         .sumOf { "${it.first()}${it.last()}".toInt() }
 }
 
 fun mapCalibrationValueToInt(value: String): Int {
