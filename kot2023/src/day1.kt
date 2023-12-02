@@ -2,7 +2,7 @@ import java.io.File
 import java.lang.Character.isDigit
 
 
-fun pt1(inputsPath: String): Int {
+private fun pt1(inputsPath: String): Int {
      return File(inputsPath).readLines()
          .map { it.filter(::isDigit) }
          .sumOf { "${it.first()}${it.last()}".toInt() }
@@ -33,7 +33,7 @@ fun lineToFirstLastDigit(line: String, matcher: (value: String) -> Pair<String, 
     return "$first$last".toInt()
 }
 
-fun pt2(inputsPath: String): Int {
+private fun pt2(inputsPath: String): Int {
     return File(inputsPath).readLines().sumOf {
         lineToFirstLastDigit(it) {
             val matches = JavaUtils.matchCalibrations(it)
