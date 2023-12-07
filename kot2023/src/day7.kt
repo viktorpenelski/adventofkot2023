@@ -72,29 +72,24 @@ data class CamelHand(val cards: String, val bet: Int, val wildcards: Boolean) {
             val bet = split[1].toInt()
             return CamelHand(cards, bet, wildcards)
         }
-        fun comparator(wildcards: Boolean): Comparator<CamelHand> {
-            return CamelHandComparator(wildcards)
-        }
-    }
-}
 
-
-class CamelHandComparator(wildcards: Boolean) : Comparator<CamelHand> {
-
-    private val cardRanks = if(wildcards) CARD_RANKS_PT_2 else CARD_RANKS
-
-    override fun compare(h1: CamelHand, h2: CamelHand): Int {
-        val strengthComparison = h1.strength.strength.compareTo(h2.strength.strength)
-        if (strengthComparison != 0) {
-            return strengthComparison
-        }
-        for (i in 0..h1.cards.lastIndex) {
-            val inOrderCardComparison = cardRanks[h1.cards[i]]!!.compareTo(cardRanks[h2.cards[i]]!!)
-            if (inOrderCardComparison != 0) {
-                return inOrderCardComparison
+        fun comparator(wildcards: Boolean) = object : Comparator<CamelHand> {
+            private val cardRanks = if (wildcards) CARD_RANKS_PT_2 else CARD_RANKS
+            override fun compare(h1: CamelHand, h2: CamelHand): Int {
+                val strengthComparison = h1.strength.strength.compareTo(h2.strength.strength)
+                if (strengthComparison != 0) {
+                    return strengthComparison
+                }
+                for (i in 0..h1.cards.lastIndex) {
+                    val inOrderCardComparison = cardRanks[h1.cards[i]]!!.compareTo(cardRanks[h2.cards[i]]!!)
+                    if (inOrderCardComparison != 0) {
+                        return inOrderCardComparison
+                    }
+                }
+                return 0
             }
+
         }
-        return 0
     }
 }
 
