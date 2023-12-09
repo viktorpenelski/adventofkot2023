@@ -36,5 +36,6 @@ fun main() {
         }
 
     println(lines.sumOf { extrapolate(it) })
+    println(lines.sumOf { extrapolate(it.reversed()) })
 
 }
