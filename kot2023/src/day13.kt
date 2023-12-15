@@ -78,12 +78,12 @@ fun smugify(island: List<String>): Int {
 
 
 fun main() {
-//    val summaries = File("inputs/day13.txt")
-//        .readText()
-//        .split("${System.lineSeparator()}${System.lineSeparator()}")
-//        .map { it.split(System.lineSeparator()) }
-//        .sumOf { summarize(it) }
-//    println(summaries)
+    val summaries = File("inputs/day13.txt")
+        .readText()
+        .split("${System.lineSeparator()}${System.lineSeparator()}")
+        .map { it.split(System.lineSeparator()) }
+        .sumOf { summarize(it) }
+    println(summaries)
 
     val smuggifiedSummaries = File("inputs/day13.txt")
         .readText()
